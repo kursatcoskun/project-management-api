@@ -155,4 +155,11 @@ public class IssueServiceImpl implements IssueService {
         return Arrays.asList(modelMapper.map(issues, IssueDto[].class));
     }
 
+    @Override
+    public List<IssueDto> getAllIssuesByAssignee(Long id) {
+        User user = userRepository.getOne(id);
+        List<Issue> issues = issueRepository.findAllByAssigneeAndStatus(user, true);
+        return Arrays.asList(modelMapper.map(issues, IssueDto[].class));
+    }
+
 }

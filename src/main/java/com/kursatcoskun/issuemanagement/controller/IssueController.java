@@ -81,22 +81,29 @@ public class IssueController {
 
     @GetMapping("/GetIssuesByProjectId/{id}")
     @ApiOperation(value = "Get Issues By Project ID Operation", response = UtilResponse.class)
-    public ResponseEntity<UtilResponse<TPage<IssueDto>>> getIssuesByProjectId(@PathVariable(value = "id", required = true) Long id,Pageable pageable) {
-        TPage<IssueDto> issues = issueServiceImpl.getIssuesByProjectId(id,pageable);
+    public ResponseEntity<UtilResponse<TPage<IssueDto>>> getIssuesByProjectId(@PathVariable(value = "id", required = true) Long id, Pageable pageable) {
+        TPage<IssueDto> issues = issueServiceImpl.getIssuesByProjectId(id, pageable);
         return ResponseEntity.ok(new UtilResponse<TPage<IssueDto>>(issues, new ProcessResult("200", ResponseMessage.SUCCESS)));
     }
 
     @GetMapping("/GetIssuesByAssigneeAndStatus/{id}/{issueStatus}")
     @ApiOperation(value = "Get Issues By Assignee ID and Issue Status Operation", response = UtilResponse.class)
-    public ResponseEntity<UtilResponse<TPage<IssueDto>>> getIssuesByProjectId(@PathVariable(value = "id", required = true) Long id,@PathVariable(value = "issueStatus",required = true) IssueStatus issueStatus,Pageable pageable) {
-        TPage<IssueDto> issues = issueServiceImpl.getIssuesByAssigneeAndIssueStatus(id,issueStatus,pageable);
+    public ResponseEntity<UtilResponse<TPage<IssueDto>>> getIssuesByProjectId(@PathVariable(value = "id", required = true) Long id, @PathVariable(value = "issueStatus", required = true) IssueStatus issueStatus, Pageable pageable) {
+        TPage<IssueDto> issues = issueServiceImpl.getIssuesByAssigneeAndIssueStatus(id, issueStatus, pageable);
         return ResponseEntity.ok(new UtilResponse<TPage<IssueDto>>(issues, new ProcessResult("200", ResponseMessage.SUCCESS)));
     }
 
     @GetMapping("/dashboardIssue/{id}/{issueStatus}")
     @ApiOperation(value = "Get Issues By Assignee ID and Issue Status Operation", response = UtilResponse.class)
-    public ResponseEntity<UtilResponse<List<IssueDto>>> getDashboardIssue(@PathVariable(value = "id", required = true) Long id,@PathVariable(value = "issueStatus",required = true) IssueStatus issueStatus,Pageable pageable) {
-        List<IssueDto> issues = issueServiceImpl.getAllIssuesByAssigneeAndIssueStatus(id,issueStatus);
-        return ResponseEntity.ok(new UtilResponse<List<IssueDto>>( issues, new ProcessResult("200", ResponseMessage.SUCCESS)));
+    public ResponseEntity<UtilResponse<List<IssueDto>>> getDashboardIssue(@PathVariable(value = "id", required = true) Long id, @PathVariable(value = "issueStatus", required = true) IssueStatus issueStatus, Pageable pageable) {
+        List<IssueDto> issues = issueServiceImpl.getAllIssuesByAssigneeAndIssueStatus(id, issueStatus);
+        return ResponseEntity.ok(new UtilResponse<List<IssueDto>>(issues, new ProcessResult("200", ResponseMessage.SUCCESS)));
+    }
+
+    @GetMapping("/getAllIssuesByAssignee/{id}")
+    @ApiOperation(value = "Get Issues By Assignee ID and Issue Status Operation", response = UtilResponse.class)
+    public ResponseEntity<UtilResponse<List<IssueDto>>> getAllIssuesByAssignee(@PathVariable(value = "id", required = true) Long id) {
+        List<IssueDto> issues = issueServiceImpl.getAllIssuesByAssignee(id);
+        return ResponseEntity.ok(new UtilResponse<List<IssueDto>>(issues, new ProcessResult("200", ResponseMessage.SUCCESS)));
     }
 }

@@ -26,4 +26,6 @@ public interface IssueService {
     TPage<IssueDto> getIssuesByAssigneeAndIssueStatus(Long id, IssueStatus issueStatus, Pageable pageable);
 
     List<IssueDto> getAllIssuesByAssigneeAndIssueStatus(Long id, IssueStatus issueStatus);
+
+    List<IssueDto> getAllIssuesByAssignee(Long id);
 }

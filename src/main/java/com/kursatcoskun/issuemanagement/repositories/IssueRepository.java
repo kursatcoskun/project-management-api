@@ -20,4 +20,6 @@ public interface IssueRepository extends JpaRepository<Issue, Long> {
 
     List<Issue> findAllByAssigneeAndIssueStatusAndStatus(User user, IssueStatus issueStatus, Boolean status);
 
+    List<Issue> findAllByAssigneeAndStatus(User user, Boolean status);
+
 }
